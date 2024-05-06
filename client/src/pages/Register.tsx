@@ -21,15 +21,6 @@ export default function Register() {
   const context = useContext(userContext);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (loading) return;
-    if (user) {
-      navigate("/home");
-      context?.setValue({ email: user.email, uid: user.uid });
-    }
-    // eslint-disable-next-line
-  }, [user, loading]);
-
   const handleFileUpload = (event: any, setFunc: (obj: string) => void) => {
     const selectedFile = event.target.files[0];
     if (selectedFile) {
@@ -61,6 +52,15 @@ export default function Register() {
     const newNumber = event.target.value.replace(/\D/g, "");
     setPhoneNumber(newNumber);
   };
+
+  useEffect(() => {
+    if (loading) return;
+    if (user) {
+      navigate("/home");
+      context?.setValue({ email: user.email, uid: user.uid });
+    }
+    // eslint-disable-next-line
+  }, [user, loading]);
 
   return (
     <div className="flex  w-screen justify-center items-center mt-[30px] mb-[30px] sm:mt-0 sm:h-[700px]">

@@ -5,8 +5,6 @@
     min-height: 100vh;
 }
 
-.container{}
-
 .tilt-box-wrap{
     position: relative;
     transition: all 0.6s ease-out;

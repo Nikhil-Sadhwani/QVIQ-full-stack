@@ -55,6 +55,20 @@ const Home: FC = () => {
     }
   };
 
+  const handleDelete = async () => {
+    await fetch(`${process.env.REACT_APP_BASE_URL}user/${data.uid}`, {
+      method: "DELETE",
+      headers: { "Content-type": "application/json" },
+    })
+      .then((res) => {
+        deleteAccount();
+        console.log("Delete account");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   useEffect(() => {
     if (loading) return;
 
@@ -72,20 +86,6 @@ const Home: FC = () => {
     }
     // eslint-disable-next-line
   }, [user, loading]);
-
-  const handleDelete = async () => {
-    await fetch(`${process.env.REACT_APP_BASE_URL}user/${data.uid}`, {
-      method: "DELETE",
-      headers: { "Content-type": "application/json" },
-    })
-      .then((res) => {
-        deleteAccount();
-        console.log("Delete account");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
 
   return (
     <div className="bg-zinc-200 min-h-screen flex flex-col">
@@ -121,11 +121,24 @@ const Home: FC = () => {
         <div
           className={`relative flex flex-col gap-0 top-[-124px] left-0 p-4 flex-wrap justify-center items-center sm:absolute sm:flex-row sm:justify-normal sm:item-none sm:gap-16 sm:top-[15rem] sm:ml-[35px] sm:left-4`}
         >
-          <img
-            src={data.profileURL}
-            alt="Profile logo"
-            className="mb-2 w-[12rem] "
-          />
+          <div className="tilt-box-wrap">
+            <span className="t_over"></span>
+            <span className="t_over"></span>
+            <span className="t_over"></span>
+            <span className="t_over"></span>
+            <span className="t_over"></span>
+            <span className="t_over"></span>
+            <span className="t_over"></span>
+            <span className="t_over"></span>
+            <span className="t_over"></span>
+            <div className="tilt-box">
+              <img
+                src={data.profileURL}
+                alt="Profile logo"
+                className="mb-2 w-[12rem] "
+              />
+            </div>
+          </div>
           <div className="h-[100px] w-auto mt-0 text-center sm:text-left sm:mt-[30px] ">
             <h2 className="text-2xl font-bold text-black sm:text-white">
               {data.name}

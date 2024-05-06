@@ -15,11 +15,6 @@ export default function EditForm() {
   const [coverImage, setCoverImage] = useState<string | any>("");
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (loading) return;
-    if (!user) navigate("/");
-  }, [user, loading]);
-
   const handleFileUpload = (event: any, setFunc: (obj: string) => void) => {
     const selectedFile = event.target.files[0];
     if (selectedFile) {
@@ -60,10 +55,6 @@ export default function EditForm() {
     }
   };
 
-  useEffect(() => {
-    fetchData(`${process.env.REACT_APP_BASE_URL}user/${uid}`);
-  }, []);
-
   const updateUserInfo = async () => {
     await fetch(`${process.env.REACT_APP_BASE_URL}user/${uid}`, {
       method: "PUT",
@@ -86,6 +77,15 @@ export default function EditForm() {
         console.log(err);
       });
   };
+
+  useEffect(() => {
+    if (loading) return;
+    if (!user) navigate("/");
+  }, [user, loading]);
+
+  useEffect(() => {
+    fetchData(`${process.env.REACT_APP_BASE_URL}user/${uid}`);
+  }, []);
 
   return (
     <div className="flex h-[calc(100vh-80px)] w-screen justify-center items-center">

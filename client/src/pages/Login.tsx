@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, logInWithEmailAndPassword, signInWithGoogle } from "../Firebase";
 import { Link, useNavigate } from "react-router-dom";
 import { userContext } from "../context/UserContext";
 
 export default function Login() {
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const context = useContext(userContext);
@@ -57,11 +57,6 @@ export default function Login() {
             />
           </button>
           <div className="flex flex-col items-center">
-            {/* <div>
-            <Link to="/reset" className="underline text-blue-500">
-              Forgot Password
-            </Link>
-          </div> */}
             <div>
               Don't have an account?{" "}
               <Link to="/register" className="underline text-blue-500">
