@@ -14,18 +14,11 @@ const port = process.env.PORT || 5000;
 
 app.use(
   cors({
-    origin: (origin, callback) => {
-      if (
-        ["http://localhost:3000", "http://192.168.68.68:3000", "https://qviq-full-stack-app.vercel.app"].includes(
-          origin || ""
-        ) ||
-        !origin
-      ) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
+    origin: [
+      "http://localhost:3000",
+      "http://192.168.68.68:3000",
+      "https://qviq-full-stack-app.vercel.app",
+    ],
     credentials: true,
   })
 );
