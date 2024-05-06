@@ -16,7 +16,7 @@ app.use(
   cors({
     origin: (origin, callback) => {
       if (
-        ["http://localhost:3000", "http://192.168.68.68:3000"].includes(
+        ["http://localhost:3000", "http://192.168.68.68:3000", "https://qviq-full-stack-app.vercel.app"].includes(
           origin || ""
         ) ||
         !origin
