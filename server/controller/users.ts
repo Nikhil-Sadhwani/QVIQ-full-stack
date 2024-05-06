@@ -9,7 +9,7 @@ export const getUserByUid = async (
     const { uid } = req.params;
     const user = await UserModel.findOne({ uid });
     if (user) {
-      res.status(201).json({
+      return res.status(201).json({
         displayPicture: user.displayPicture,
         name: user.name,
         email: user.email,
